@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - 8080:80
+    env:
+      - DB_USERNAME=db_covid
+      - DB_PASSWORD=vdx91Dsa53F3
+      - DB_NAME=db_covid
+      - DB_PORT=5432
+      - HTTP_PORT=80
+  db:
+    image: postgres
+    env:
+      - POSTGRES_USER=db_covid
+      - POSTGRES_DB=db_covid
+      - POSTGRES_PASSWORD=vdx91Dsa53F3
