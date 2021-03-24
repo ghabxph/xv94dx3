@@ -2,7 +2,10 @@ package main
 
 import (
 	c "github.com/ghabxph/xv94dx3/pkg/config"
-	"github.com/ghabxph/xv94dx3/internal/framework"
+	"github.com/ghabxph/xv94dx3/pkg/framework"
+	"github.com/ghabxph/xv94dx3/pkg/config/iface"
+	"github.com/ghabxph/xv94dx3/internal/entity"
+	"github.com/ghabxph/xv94dx3/internal/endpoint"
 	"os"
 	"strconv"
 )
@@ -15,16 +18,14 @@ func main() {
 
 	// Setup the framework and run
 	framework.Init(c.Config{
-		Endpoints: map[string]c.Endpoint {
-			"http": c.HttpEndpoint{Port: http_port},
+		Endpoints: map[string]iface.Endpoint {
+			"http": &endpoint.Http{Port: http_port},
 		},
-		Databases: map[string]c.Database {
-			"postgres": c.PostgreSQLDatabase{
-				Port: db_port,
-				DbName: os.Getenv("DB_NAME"),
-				DbUsername: os.Getenv("DB_USERNAME"),
-				DbPassword: os.Getenv("DB_PASSWORD"),
-			},
+		Database: &entity.PostgreSQLDatabase{
+			Port: db_port,
+			DbName: os.Getenv("DB_NAME"),
+			DbUsername: os.Getenv("DB_USERNAME"),
+			DbPassword: os.Getenv("DB_PASSWORD"),
 		},
 	})
 }

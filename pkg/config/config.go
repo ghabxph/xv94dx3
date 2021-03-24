@@ -1,20 +1,10 @@
 package config
 
-type Config struct{
-	Endpoints map[string]Endpoint
-	Databases map[string]Database
-}
+import (
+	"github.com/ghabxph/xv94dx3/pkg/config/iface"
+)
 
-type Endpoint interface{}
-type Database interface{}
-
-type HttpEndpoint struct{
-	Port int
-}
-
-type PostgreSQLDatabase struct{
-	Port int
-	DbName string
-	DbUsername string
-	DbPassword string
+type Config struct {
+	Endpoints map[string]iface.Endpoint
+	Database iface.Database
 }
