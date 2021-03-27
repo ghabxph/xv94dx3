@@ -1,16 +1,23 @@
 package covidstats
 
-type covidStats struct{}
+type CovidStats interface {
+	GetTopConfirmed(observation_date string, max_results int) map[string]interface{}
+}
 
-var instance *covidStats
+var instance CovidStats
 
-func GetInstance() *covidStats {
-	if instance == nil {
-		instance = &covidStats{}
+func CreateOnce(_instance CovidStats) {
+	if instance != nil {
+		return
 	}
+	instance = _instance
+}
+
+func GetInstance() CovidStats {
 	return instance
 }
 
+/*
 func (c *covidStats) GetTopConfirmed(observation_date string, max_results int) map[string]interface{} {
 	sql := `
 SELECT
@@ -43,3 +50,4 @@ GROUP BY country;
 		"sql": sql,
 	}
 }
+*/

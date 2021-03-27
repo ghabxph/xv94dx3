@@ -6,12 +6,13 @@ import (
 )
 
 func Init(config config.Config) {
+
 	var wg sync.WaitGroup
 
 	// Run endpoints
 	for _, endpoint := range config.Endpoints {
 		wg.Add(1)
-		endpoint.Create(&wg)
+		go endpoint.Create(&wg)
 	}
 
 	// Initialize database

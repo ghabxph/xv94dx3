@@ -4,7 +4,8 @@ import (
 	c "github.com/ghabxph/xv94dx3/pkg/config"
 	"github.com/ghabxph/xv94dx3/pkg/framework"
 	"github.com/ghabxph/xv94dx3/pkg/config/iface"
-	"github.com/ghabxph/xv94dx3/internal/entity"
+	"github.com/ghabxph/xv94dx3/internal/entity/postgres"
+	"github.com/ghabxph/xv94dx3/internal/entity/postgres/seeder"
 	"github.com/ghabxph/xv94dx3/internal/endpoint"
 	"os"
 	"strconv"
@@ -21,11 +22,13 @@ func main() {
 		Endpoints: map[string]iface.Endpoint {
 			"http": &endpoint.Http{Port: http_port},
 		},
-		Database: &entity.PostgreSQLDatabase{
+		Database: &postgres.Database{
+			Host: os.Getenv("DB_HOST"),
 			Port: db_port,
 			DbName: os.Getenv("DB_NAME"),
 			DbUsername: os.Getenv("DB_USERNAME"),
 			DbPassword: os.Getenv("DB_PASSWORD"),
+			Seeder: &seeder.PostgresSeeder{},
 		},
 	})
 }
