@@ -1,0 +1,41 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Covid Statistics"
+  license:
+    name: "MIT"
+    url: "https://github.com/ghabxph/xv94dx3/blob/master/LICENSE.md"
+host: ""
+basePath: "/"
+schemes:
+- "http"
+- "https"
+paths:
+  /top/confirmed:
+    get:
+      tags:
+      - "Marvel Characters"
+      summary: "Top N countries with confirmed cases."
+      description: "Returns a list of the top N countries with confirmed cases for a given observation date where N is the maximum number of results. Include the total number of deaths and recoveries per country in the response for that day."
+      operationId: "topConfirmed"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "observation_date"
+        type: "string"
+        description: "Returns COVID-19 statistics from given observation date. Input must be 'yyyy-mm-dd' format."
+        required: true
+      - in: "query"
+        name: "max_results"
+        type: "number"
+        description: "Returns the top N countries with confirmed cases. If omitted then we'll show 10 countries."
+        required: false
+      responses:
+        "200":
+          description: "Shows list of countries with n-number of confirmed cases from highest to lowest (Top N)"
+        "400":
+          description: "Bad request. Check error message"

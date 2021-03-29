@@ -18,6 +18,8 @@ FROM golang:1.16.2-buster
 
 COPY --from=build /app/bin/xv94dx3 /app/bin/
 COPY --from=build /app/covid_19_data.csv /app/
+COPY --from=build /app/swagger.yaml /app/swagger.yaml
+
 WORKDIR /app
 RUN ln -s /app/bin/xv94dx3 /usr/local/bin/xv94dx3 && \
     useradd app

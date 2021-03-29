@@ -13,7 +13,7 @@ services:
       - DB_NAME=db_covid
       - DB_PORT=5432
       - HTTP_PORT=80
-    command: --runSeeder=covid_19_data.csv
+    #command: --runSeeder=covid_19_data.csv
   db:
     image: postgres
     environment:

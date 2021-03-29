@@ -1,10 +1,11 @@
 package postgres
 
 import (
+	"os"
 	"fmt"
     "github.com/go-pg/pg/v10"
 	"github.com/ghabxph/xv94dx3/pkg/seeder"
-	"os"
+	"github.com/ghabxph/xv94dx3/internal/entity/covidstats"
 )
 
 type Database struct {
@@ -22,6 +23,9 @@ func (d *Database) Init() {
 
 	if (instance == nil) {
 		instance = d
+
+		// Setting up models
+		covidstats.CreateOnce(&CovidStats{})
 	}
 
 	if len(os.Args) != 2 {
