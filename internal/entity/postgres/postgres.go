@@ -4,6 +4,7 @@ import (
 	"fmt"
     "github.com/go-pg/pg/v10"
 	"github.com/ghabxph/xv94dx3/pkg/seeder"
+	"os"
 )
 
 type Database struct {
@@ -23,11 +24,14 @@ func (d *Database) Init() {
 		instance = d
 	}
 
-	// TODO: Logic for database seeder. Seeder must only run when certain parameter is set
-	// --runSeeder
-	// --runSeeder=covid_19_data.csv
-	// Must read --runSeeder
-	// Second iteration: must read --runSeeder and covid_19_data.csv
+	if len(os.Args) != 2 {
+		return // No parameter given, thus closing...
+	}
+
+	if os.Args[1][0:12] != "--runSeeder=" {
+		return // Exit if parameter is not --runSeedder
+	}
+
 	d.Seeder.RunSeeder()
 }
 

@@ -11,6 +11,7 @@ import (
     "encoding/csv"
     "strings"
     "strconv"
+    "os"
 )
 
 type PostgresSeeder struct {}
@@ -41,7 +42,10 @@ func createSchema(db *pg.DB) {
 
 func readCsvAndPopulateTable(db *pg.DB) {
     log.Println("Reading CSV")
-    in, err := ioutil.ReadFile("covid_19_data.csv")
+
+    fname := os.Args[1][12:]
+    //in, err := ioutil.ReadFile("covid_19_data.csv")
+    in, err := ioutil.ReadFile(fname)
     if err != nil {
         panic(err)
     }
@@ -59,7 +63,7 @@ func readCsvAndPopulateTable(db *pg.DB) {
         confirmed, _ := strconv.ParseFloat(item[5], 64)
         deaths, _ := strconv.ParseFloat(item[6], 64)
         recovered, _ := strconv.ParseFloat(item[7], 64)
-        db.Model(&postgres.CovidStats{
+        covidStats := &postgres.CovidStats{
             SNo: sno,
             ObservationDate: observationDate,
             ProvinceState: item[2],
@@ -68,8 +72,9 @@ func readCsvAndPopulateTable(db *pg.DB) {
             Confirmed: uint64(confirmed),
             Deaths: uint64(deaths),
             Recovered: uint64(recovered),
-        }).Insert()
-        log.Println(sno, confirmed, deaths, recovered)
+        }
+        db.Model(covidStats).Insert()
+        log.Println(covidStats)
     }
 
     log.Println("read through csv done")

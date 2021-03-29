@@ -10,6 +10,10 @@ run:
 	@echo ---- running the app ----
 	bin/xv94dx3
 
+run-with-seeder:
+	@echo ---- running the app ----
+	bin/xv94dx3 --runSeeder=covid_19_data.csv
+
 pull:
 	@echo ---- pull docker images ----
 	docker-compose pull
