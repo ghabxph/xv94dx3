@@ -16,7 +16,7 @@ this name on a password manager. LOL.
 * Docker
 * Docker Compose
 
-## Building and running the application
+## Pre-setup
 
 Clone our repository:
 
@@ -24,17 +24,29 @@ Clone our repository:
 git clone https://github.com/ghabxph/xv94dx3.git
 ```
 
-Then by using make, conveniently build and turn the docker containers up:
+Then go to `docker-compose.yaml`. Uncomment  `#command: --runSeeder=covid_19_data.csv`  by
+removing the hash symbol. This is to import all data from our  csv file  to  our  postgres
+database.
+
+Then build and run our app by running:
+
+``` sh
+make build up ps
+```
+
+At first attempt, `xv94dx3_web_1` will die. That is because postgresql was not loaded yet.
+Simply rerunning `make build up ps` should rerun it and all data from `covid_19_data.csv`
+will be loaded.
+
+## Building and running the application
+
+By using make, conveniently build and turn the docker containers up:
 
 ``` sh
 make build up ps
 ```
 
 `ps` is just for showing the process.
-
-If `xv94dx3_web_1` has exited, it means that postgres was not  loaded  up  the  time  that
-xv94dx3 is loading up. To fix that, simply run `make build up ps` again and it should  run
-by now.
 
 ## API Documentation
 
