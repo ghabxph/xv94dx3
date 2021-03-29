@@ -34,7 +34,7 @@ func createSchema(db *pg.DB) {
 
     log.Println("Creating DB Schema")
 
-    err := db.Model(&postgres.CovidStats{}).CreateTable(&orm.CreateTableOptions{})
+    err := db.Model(&postgres.CovidObservations{}).CreateTable(&orm.CreateTableOptions{})
     if err != nil {
         panic("PostgreSQL schema creation failed: " + err.Error())
     }
@@ -63,7 +63,7 @@ func readCsvAndPopulateTable(db *pg.DB) {
         confirmed, _ := strconv.ParseFloat(item[5], 64)
         deaths, _ := strconv.ParseFloat(item[6], 64)
         recovered, _ := strconv.ParseFloat(item[7], 64)
-        covidStats := &postgres.CovidStats{
+        covidStats := &postgres.CovidObservations{
             SNo: sno,
             ObservationDate: observationDate,
             ProvinceState: item[2],

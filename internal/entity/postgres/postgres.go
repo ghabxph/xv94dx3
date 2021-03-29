@@ -5,7 +5,7 @@ import (
 	"fmt"
     "github.com/go-pg/pg/v10"
 	"github.com/ghabxph/xv94dx3/pkg/seeder"
-	"github.com/ghabxph/xv94dx3/internal/entity/covidstats"
+	"github.com/ghabxph/xv94dx3/internal/entity/covidobservations"
 )
 
 type Database struct {
@@ -25,7 +25,7 @@ func (d *Database) Init() {
 		instance = d
 
 		// Setting up models
-		covidstats.CreateOnce(&CovidStats{})
+		covidobservations.CreateOnce(&CovidObservations{})
 	}
 
 	if len(os.Args) != 2 {

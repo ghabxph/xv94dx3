@@ -84,15 +84,15 @@ web_1      | 2021/03/29 13:40:40 &{15131 2020-04-14 00:00:00 +0000 UTC Zhejiang 
 web_1      | 2021/03/29 13:40:40 read through csv done
 ```
 
-## Building and running the application
+## Accessing the application
 
-By using make, conveniently build and turn the docker containers up:
+As per defined in `docker-compose.yaml`, simply access your local machine to port 8082: `http://localhost:8082`
 
-``` sh
-make build up ps
-```
+Swagger shall guide you how to use the api. Of course you can consume the API directly by yourself, just using
+swagger as your point of reference.
 
-`ps` is just for showing the process.
+If you desire to access it on my website, please choose `https` option because my cloudflare is setup only for
+`https` connections only. And who uses `http` nowadays? (except local development).
 
 ## API Documentation
 
