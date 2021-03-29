@@ -2,7 +2,6 @@
 
 [![Official Website](https://img.shields.io/badge/Official%20Website-https://covid.ghabxph.info-green.svg)](https://covid.ghabxph.info)
 [![Maintainer - GhabXPH](https://img.shields.io/badge/maintainer-ghabxph-green.svg)](https://github.com/ghabxph)
-[![Maintainer - GhabXPH](https://img.shields.io/badge/maintainer-ghabxph-green.svg)](https://github.com/ghabxph)
 [![Project Status - Feature Complete](https://img.shields.io/badge/project%20status-feature%20complete-green.svg)](https://github.com/ghabxph/xv94dx3)
 
 Just a simple tool that returns a list of the top N countries with confirmed cases  for  a
